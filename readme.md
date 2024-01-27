@@ -11,4 +11,9 @@
 - Réinitialisation des points de vie lorsque l'on quitte la partie
 
 - Prévention en JS d'erreur lors du click sur le bouton RUN avec une confirmation
+
 - REST permet de régénrer un nombre de point de vie aléatoire n'éxcedant jamais les points de vie maximum
+
+Source des sprites : https://pokemondb.net/sprites
+
+Source des assets : https://reliccastle.com/resources/1427/
