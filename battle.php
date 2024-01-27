@@ -11,6 +11,7 @@
 
 <body>
 
+    <!-- Appel du script pour que l'affichage du JS se passe bien -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <?php
@@ -66,6 +67,7 @@
                     $pkmManager->updatePersonnage($pkmO);
                 }
 
+                // On cache les bouttons de l'overlay
                 // Appel de la fonction pour changer le dialogue après 3s
                 echo '<script>
                     document.addEventListener("DOMContentLoaded", function() {
@@ -73,7 +75,7 @@
                     });
                     setTimeout(function() {
                         afficherActionAdverse();
-                    }, 3000);
+                    }, 2000);
                 </script>';
                 break;
 
@@ -95,6 +97,7 @@
                     $pkmManager->updatePersonnage($pkmO);
                 }
 
+                // On cache les bouttons de l'overlay
                 // Appel de la fonction pour changer le dialogue après 3s
                 echo '<script>
                 document.addEventListener("DOMContentLoaded", function() {
@@ -102,9 +105,8 @@
                 });
                 setTimeout(function() {
                     afficherActionAdverse();
-                }, 3000);
+                }, 2000);
             </script>';
-
 
                 break;
             case 'RUN':
@@ -131,23 +133,19 @@
         }
     }
 
-    // Récupération des données des pokemons
+    // Récupération des données des pokemons actualisé après action pour l'affichage
     $pkmJ = $pkmManager->getPersonnageById($_SESSION['pkmJoueur']);
     $pkmO = $pkmManager->getPersonnageById($_SESSION['pkmOrdi']);
-
 
     ?>
 
     <section id="battleSection">
 
         <div id="battleScene">
-
             <div id="gifPokemonPlayer">
-
                 <?php
                 echo '<img src="./img/' . $pkmJ->getName() . '-back.gif" alt="">';
                 ?>
-
             </div>
 
             <div id="gifPokemonOrdi">
@@ -155,16 +153,14 @@
                 echo '<img src="./img/' . $pkmO->getName() . '-front.gif" alt="">';
                 ?>
             </div>
-
-
         </div>
 
         <div id="battleOverlay">
 
             <div id="battleOverlayHeader">
-
                 <?php
 
+                // Affichage de l'overlay du pokémon du joueur
                 echo '<div id="battleOverlayPlayer" class="battleOverlayInfo">
                     <div class="btemplatePkmRight">
                         <div class="btemplatePkmInfoTop">
@@ -177,8 +173,7 @@
                     </div>
                 </div>';
 
-
-
+                // Affichage de l'overlay du pokémon de l'ordi
                 echo '<div id="battleOverlayOrdi" class="battleOverlayInfo">
                     <div class="btemplatePkmRight">
                         <div class="btemplatePkmInfoTop">
@@ -192,15 +187,14 @@
                 </div>';
 
                 ?>
-
             </div>
 
             <div id="battleOverlayFooter">
-
                 <div id="battleOverlayLeft" class="pixel-corners">
                     <span id="overlayText">
                         <?php
 
+                        // Affichage des dialogues de combat
                         if (isset($logJ)) {
                             echo $logJ;
                         } else {
@@ -228,7 +222,6 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -263,7 +256,6 @@
     }
 
     ?>
-    <script src="./src/js/battle.js"></script>
 
     <script>
         // Cette fonction affiche l'action du personnage adverse
@@ -277,6 +269,8 @@
             $("#battleOverlayRightContainer").css("display", "grid");
         }
     </script>
+
+    <script src="./src/js/battle.js"></script>
 
 </body>
 

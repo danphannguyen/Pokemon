@@ -1,3 +1,4 @@
+// fonction pour confirmer la fuite
 function confirmRun() {
 
     // Afficher une boîte de dialogue de confirmation
