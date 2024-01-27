@@ -5,18 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/css/style.css">
+
     <title>Battle !</title>
 </head>
 
 <body>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <?php
+    // Démarre la session & attribue les id des pokemons à la session
     session_start();
     if (isset($_POST['pkmJoueur']) && isset($_POST['pkmOrdi'])) {
         $_SESSION['pkmJoueur'] = $_POST['pkmJoueur'];
         $_SESSION['pkmOrdi'] = $_POST['pkmOrdi'];
     }
 
+    // Vérifie si les pokemons sont bien attribués
     if (!isset($_SESSION['pkmJoueur']) || !isset($_SESSION['pkmOrdi'])) {
         header('Location: ./home.php');
     }
@@ -42,18 +47,65 @@
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'FIGHT':
+                echo '<script> </script>';
                 // Permet d'attaquer
                 $pkmJ = $pkmManager->getPersonnageById($_SESSION['pkmJoueur']);
                 $pkmO = $pkmManager->getPersonnageById($_SESSION['pkmOrdi']);
-                $log = $pkmJ->attaque($pkmO);
+                $logJ = $pkmJ->attaque($pkmO);
                 $pkmManager->updatePersonnage($pkmJ);
                 $pkmManager->updatePersonnage($pkmO);
+
+                // Permet de faire jouer l'ordi avant l'affichage du dialogue
+                $actionOrdi = rand(1, 2);
+                if ($actionOrdi == 1) {
+                    $logO = $pkmO->attaque($pkmJ);
+                    $pkmManager->updatePersonnage($pkmO);
+                    $pkmManager->updatePersonnage($pkmJ);
+                } else {
+                    $logO = $pkmO->regenerer();
+                    $pkmManager->updatePersonnage($pkmO);
+                }
+
+                // Appel de la fonction pour changer le dialogue après 3s
+                echo '<script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        $("#battleOverlayRightContainer").css("display", "none");
+                    });
+                    setTimeout(function() {
+                        afficherActionAdverse();
+                    }, 3000);
+                </script>';
                 break;
+
             case 'REST':
                 // Permet de regenerer les points de vie
                 $pkmJ = $pkmManager->getPersonnageById($_SESSION['pkmJoueur']);
-                $log = $pkmJ->regenerer();
+                $pkmO = $pkmManager->getPersonnageById($_SESSION['pkmOrdi']);
+                $logJ = $pkmJ->regenerer();
                 $pkmManager->updatePersonnage($pkmJ);
+
+                // Permet de faire jouer l'ordi avant l'affichage du dialogue
+                $actionOrdi = rand(1, 2);
+                if ($actionOrdi == 1) {
+                    $logO = $pkmO->attaque($pkmJ);
+                    $pkmManager->updatePersonnage($pkmO);
+                    $pkmManager->updatePersonnage($pkmJ);
+                } else {
+                    $logO = $pkmO->regenerer();
+                    $pkmManager->updatePersonnage($pkmO);
+                }
+
+                // Appel de la fonction pour changer le dialogue après 3s
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    $("#battleOverlayRightContainer").css("display", "none");
+                });
+                setTimeout(function() {
+                    afficherActionAdverse();
+                }, 3000);
+            </script>';
+
+
                 break;
             case 'RUN':
                 // Permet de quitter la partie
@@ -149,8 +201,8 @@
                     <span id="overlayText">
                         <?php
 
-                        if (isset($log)) {
-                            echo $log;
+                        if (isset($logJ)) {
+                            echo $logJ;
                         } else {
                             echo 'What will ' . $pkmJ->getName() . ' do ?';
                         }
@@ -159,7 +211,7 @@
                     </span>
                 </div>
 
-                <div id="battleOverlayRight" class="pixel-corners">
+                <div id="battleOverlayRight" class="pixel-corners" style="display: grid;">
 
                     <div id="battleOverlayRightContainer">
                         <form class="overlayButton" method="post">
@@ -182,8 +234,49 @@
 
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <?php
+
+    // Vérification des points de vie
+    if ($pkmJ->getPv() <= 0) {
+        echo '<script>alert("Vous avez perdu !")</script>';
+
+        // Reinitialisation des points de vie
+        $pkmJ = $pkmManager->getPersonnageById($_SESSION['pkmJoueur']);
+        $pkmJ->reinitPv();
+        $pkmManager->updatePersonnage($pkmJ);
+        $pkmO = $pkmManager->getPersonnageById($_SESSION['pkmOrdi']);
+        $pkmO->reinitPv();
+        $pkmManager->updatePersonnage($pkmO);
+        echo '<script>document.location.href="./home.php"</script>';
+    } elseif ($pkmO->getPv() <= 0) {
+        echo '<script>alert("Vous avez gagné !")</script>';
+
+        // Reinitialisation des points de vie
+        $pkmJ = $pkmManager->getPersonnageById($_SESSION['pkmJoueur']);
+        $pkmJ->reinitPv();
+        $pkmManager->updatePersonnage($pkmJ);
+        $pkmO = $pkmManager->getPersonnageById($_SESSION['pkmOrdi']);
+        $pkmO->reinitPv();
+        $pkmManager->updatePersonnage($pkmO);
+        echo '<script>document.location.href="./home.php"</script>';
+    }
+
+    ?>
     <script src="./src/js/battle.js"></script>
+
+    <script>
+        // Cette fonction affiche l'action du personnage adverse
+        function afficherActionAdverse() {
+
+            // Affiche l'action dans le résultat
+            $("#overlayText").empty();
+            $("#overlayText").append("<?php echo $logO; ?>");
+
+            // Réinitialise l'affichage du tour du joueur
+            $("#battleOverlayRightContainer").css("display", "grid");
+        }
+    </script>
 
 </body>
 

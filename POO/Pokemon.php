@@ -22,9 +22,7 @@ class Pokemon
     // Permet de regenerer les points de vie ( si $x est null, on regenere tout, sinon on regenere $x points de vie )
     public function regenerer()
     {
-        $x = $this->maxPv - $this->pv;
-
-        $x = rand(1, $x); // Generate a random number between 1 and 10
+        $x = rand(1, 15); // Generate a random number between 1 and 10
         $this->pv = min($this->pv + $x, $this->maxPv);
         return "$this->name s'est regenere de $x points de vie !";
     }
