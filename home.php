@@ -10,6 +10,14 @@
 
 <body>
 
+    <audio id="backgroundMusic" controls autoplay loop>
+        <source src="./src/Yoneuve.mp3" type="audio/mp3">
+        Votre navigateur ne prend pas en charge l'élément audio.
+    </audio>
+    <button id="backgroundMusicButton" onclick="togglePause()">
+        <img id="bgMusicImg" src="./img/sound.svg" alt="sound">
+    </button>
+
     <?php
 
     //Intégre la bdd

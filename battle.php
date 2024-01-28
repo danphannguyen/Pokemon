@@ -11,6 +11,14 @@
 
 <body>
 
+    <audio id="backgroundMusic" controls autoplay loop>
+        <source src="./src/Battle.mp3" type="audio/mp3">
+        Votre navigateur ne prend pas en charge l'élément audio.
+    </audio>
+    <button id="backgroundMusicButton" onclick="togglePause()">
+        <img id="bgMusicImg" src="./img/sound.svg" alt="sound">
+    </button>
+
     <!-- Appel du script pour que l'affichage du JS se passe bien -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 

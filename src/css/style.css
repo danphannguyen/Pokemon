@@ -229,6 +229,30 @@ p {
 
 /* =============================================== Home Page ============================================= */
 
+#backgroundMusic {
+    display: none;
+}
+
+#backgroundMusicButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-family: "PkmFont";
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--clr-text);
+    border: 4px solid var(--clr-text);
+}
+
+#backgroundMusicButton:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 #homeSection {
     height: 100vh;
     width: 100%;

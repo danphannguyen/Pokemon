@@ -35,3 +35,15 @@ function updateOptions() {
     $("#pkmJoueurSelect option[value='" + selectedValue + "']").prop("disabled", true);
 }
 
+function togglePause() {
+    var audio = document.getElementById('backgroundMusic');
+
+    if (audio.paused) {
+        audio.play();
+        $("#bgMusicImg").attr("src", "./img/sound.svg");
+    } else {
+        audio.pause();
+        $("#bgMusicImg").attr("src", "./img/mute.svg");
+    }
+}
+
