@@ -631,3 +631,131 @@ p {
     right: 18%;
 
 }
+
+/* =========== Back Office Page ========== */
+
+#backofficeSection {
+    height: 100vh;
+    width: 100%;
+    padding: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "PkmFont";
+}
+
+#backofficeBack {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-family: "PkmFont";
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--clr-text);
+    border: 4px solid var(--clr-text);
+}
+
+#backofficeBack:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#backofficeSection h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+#backofficeSection #homeWrapperAsideBorder {
+    width: 40%;
+}
+
+#backofficeSection .htemplatePkmName {
+    margin: 0 !important;
+}
+
+.deleteTool {
+    border: none;
+    background-color: rgb(253, 142, 134);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.deleteTool:hover {
+    cursor: pointer;
+    background-color: rgb(255, 102, 94);
+    transition: all 0.2s ease-in-out;
+}
+
+.editTool {
+    border: none;
+    background-color: rgb(255 217 153);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.editTool:hover {
+    cursor: pointer;
+    background-color: rgb(255 187 94);
+    transition: all 0.2s ease-in-out;
+}
+
+.toolsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+#settingsButton {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-family: "PkmFont";
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--clr-text);
+    border: 4px solid var(--clr-text);
+}
+
+#settingsButton:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#addPkmButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-family: "PkmFont";
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--clr-text);
+    border: 4px solid var(--clr-text);
+    background: none;
+    border-radius: 0;
+}
+
+#addPkmButton:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}

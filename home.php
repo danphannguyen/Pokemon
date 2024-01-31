@@ -18,6 +18,10 @@
         <img id="bgMusicImg" src="./img/sound.svg" alt="sound">
     </button>
 
+    <a id="settingsButton" href="./backoffice.php">
+        <img src="./img/round.svg" alt="">
+    </a>
+
     <?php
 
     //Intégre la bdd

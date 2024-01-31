@@ -15,8 +15,8 @@ $(document).ready(function () {
     });
 
     function validateForm() {
-        var joueurSelectValue = $("#pkmJoueurSelect").val();
-        var ordiSelectValue = $("#pkmOrdiSelect").val();
+        let joueurSelectValue = $("#pkmJoueurSelect").val();
+        let ordiSelectValue = $("#pkmOrdiSelect").val();
 
         // Vérifier si les deux sélections sont valides
         return joueurSelectValue !== "" && ordiSelectValue !== "" && joueurSelectValue !== ordiSelectValue;
@@ -24,7 +24,7 @@ $(document).ready(function () {
 });
 
 function updateOptions() {
-    var selectedValue = $("#pkmJoueurSelect").val();
+    let selectedValue = $("#pkmJoueurSelect").val();
 
     $("#pkmOrdiSelect option").prop("disabled", false);
     $("#pkmOrdiSelect option[value='" + selectedValue + "']").prop("disabled", true);
@@ -36,7 +36,7 @@ function updateOptions() {
 }
 
 function togglePause() {
-    var audio = document.getElementById('backgroundMusic');
+    let audio = document.getElementById('backgroundMusic');
 
     if (audio.paused) {
         audio.play();

@@ -31,12 +31,13 @@ class PokemonManager
 
     // Fonction add
     public function addPersonnage(Pokemon $perso) {
-        $query = $this -> db -> prepare('INSERT INTO Pokemons(name, pv, atk) VALUES(:name, :pv, :atk)');
-
+        $query = $this -> db -> prepare('INSERT INTO Pokemons(name, pv, atk, maxPv, lvl, typePkm) VALUES(:name, :pv, :atk, :maxpv, :lvl, :typePkm)');
         $query -> bindValue(':name', $perso -> getName());
         $query -> bindValue(':pv', $perso -> getPv());
         $query -> bindValue(':atk', $perso -> getAtk());
-
+        $query -> bindValue(':maxpv', $perso -> getMaxPv());
+        $query -> bindValue(':lvl', $perso -> getLvl());
+        $query -> bindValue(':typePkm', $perso -> getTypePkm());
         $query -> execute();
     }
 
@@ -60,13 +61,14 @@ class PokemonManager
 
     // Fonction update
     public function updatePersonnage(Pokemon $perso) {
-        $query = $this -> db -> prepare('UPDATE Pokemons SET name = :name, pv = :pv, atk = :atk WHERE id = :id');
-
+        $query = $this -> db -> prepare('UPDATE Pokemons SET name = :name, pv = :pv, atk = :atk, maxPv = :maxpv, lvl = :lvl, typePkm = :typePkm  WHERE id = :id');
         $query -> bindValue(':name', $perso -> getName());
         $query -> bindValue(':pv', $perso -> getPv());
         $query -> bindValue(':atk', $perso -> getAtk());
         $query -> bindValue(':id', $perso -> getId());
-
+        $query -> bindValue(':maxpv', $perso -> getMaxPv());
+        $query -> bindValue(':lvl', $perso -> getLvl());
+        $query -> bindValue(':typePkm', $perso -> getTypePkm());
         $query -> execute();
     }
 

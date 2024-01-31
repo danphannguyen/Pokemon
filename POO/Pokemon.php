@@ -8,6 +8,7 @@ class Pokemon
     private $maxPv = "";
     private $atk = "";
     private $lvl = "";
+    private $typePkm = "";
     private $id = "";
     private static $nbPkm = 0;
 
@@ -113,6 +114,18 @@ class Pokemon
         }
     }
 
+    public function getTypePkm()
+    {
+        return $this->typePkm;
+    }
+
+    public function setTypePkm($typePkm)
+    {
+        if (is_string($typePkm)) {
+            $this->typePkm = $typePkm;
+        }
+    }
+    
     public static function getNbPersonnage()
     {
         return self::$nbPkm;
