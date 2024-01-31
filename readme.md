@@ -18,4 +18,4 @@ Source des sprites : https://pokemondb.net/sprites
 
 Source des assets : https://reliccastle.com/resources/1427/
 
-Site hébergé à l'adresse suivante : https://pokemon.duno0569.odns.fr/
+Site hébergé à l'adresse suivante : https://pokemon.danpn.eu

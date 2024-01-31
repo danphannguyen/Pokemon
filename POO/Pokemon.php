@@ -109,6 +109,7 @@ class Pokemon
 
     public function setId($id)
     {
+        $id = intval($id);
         if (is_int($id)) {
             $this->id = $id;
         }
